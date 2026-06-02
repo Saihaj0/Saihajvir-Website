@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState } from 'react'
@@ -67,7 +68,7 @@ export function Navbar() {
                 asChild
                 className="hover:text-accent"
               >
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Saihaj0" target="_blank" rel="noopener noreferrer">
                   <Github className="w-5 h-5" />
                 </a>
               </Button>
@@ -77,7 +78,7 @@ export function Navbar() {
                 asChild
                 className="hover:text-accent"
               >
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/saihajvir-singh-52490a283" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="w-5 h-5" />
                 </a>
               </Button>
