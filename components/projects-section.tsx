@@ -46,6 +46,36 @@ const projects: Project[] = [
     technologies: ['TypeScript', 'Next.js', 'Supabase', 'HTML/CSS', 'Environmental Tech'],
     githubUrl: 'https://github.com/Saihaj0/SIH-FINAL',
   },
+  {
+    title: 'PaisaPilot',
+    description: 'AI-powered personal finance management app for Indian youth, built as a B.Tech capstone project. Nine specialized AI agents run an 18-stage pipeline covering transaction categorization, spend forecasting, anomaly detection, and AI-driven coaching, targeting the 150M+ UPI user base.',
+    technologies: ['LightGBM', 'Temporal Fusion Transformer', 'Claude API', 'RAG', 'Python', 'UPI/SMS Parsing'],
+    githubUrl: 'https://github.com/Saihaj0',
+  },
+  {
+    title: 'PromptGuard',
+    description: 'Production-grade security layer for detecting and preventing prompt injection attacks in LLM applications. Combines six independent detection methods (keyword, regex, encoding, chain-injection, honeypot, and phrase detection) with an explainability engine and real-time threat analytics dashboard.',
+    technologies: ['Next.js', 'Python', 'FastAPI', 'Prompt Security', 'Analytics Dashboard'],
+    githubUrl: 'https://github.com/Saihaj0/PromptGuard',
+  },
+  {
+    title: 'AquaPrognos',
+    description: 'Read-only retrofit estimator for household water filter cartridges that measures flow rate, pressure, turbidity, and temperature to predict remaining cartridge life, without actuating any valves. Built for AtomQuest 2026 by Atomberg (Water Purifier track).',
+    technologies: ['ESP32', 'PlatformIO', 'Python', 'Sensor Fusion', 'Embedded Systems'],
+    githubUrl: 'https://github.com/Saihaj0',
+  },
+  {
+    title: 'RootLens',
+    description: 'AI-diagnosed incident detection system built as a Cloud Computing course project on AWS, developed with a team to automatically surface and explain root causes of infrastructure incidents.',
+    technologies: ['AWS', 'Python', 'Cloud Computing', 'Incident Detection'],
+    githubUrl: 'https://github.com/Saihaj0',
+  },
+  {
+    title: 'TRACE-X – Explainable Digital Forensics Engine',
+    description: 'An explainable digital forensics engine designed to analyze evidence and surface transparent, interpretable reasoning behind its findings, aimed at making forensic AI outputs auditable and trustworthy.',
+    technologies: ['Python', 'Explainable AI', 'Digital Forensics'],
+    githubUrl: 'https://github.com/Saihaj0',
+  },
 ]
 
 export function ProjectsSection() {

@@ -75,6 +75,49 @@ export function AchievementsSection() {
               'National-level innovation challenge',
             ]}
           />
+
+          <TimelineItem
+            title="Finalist – LyondellBasell Hackathon"
+            subtitle="Team 404BrainNotFound"
+            date="2026"
+            description="Reached the finals of the LyondellBasell innovation hackathon as part of a competitive national challenge."
+            details={[
+              'Advanced through multiple evaluation rounds to the final stage',
+            ]}
+          />
+
+          <TimelineItem
+            title="AtomQuest 2026 by Atomberg — Track 2 (Water Purifier)"
+            subtitle="Project: AquaPrognos | Team 404BrainNOTFound"
+            date="2026"
+            description="Building AquaPrognos, a read-only retrofit estimator predicting remaining filter-cartridge life for household water purifiers."
+            details={[
+              'Cleared Stage 1 with the AquaPrognos abstract submission',
+              'Advanced to Round 2: prototype demo video and progress report',
+            ]}
+          />
+
+          <TimelineItem
+            title="LYB Mumbai Hackathon 2026 — 'Factory of 2036'"
+            subtitle="Team 404BrainNotFound"
+            date="2026"
+            description="Competing with a team project envisioning the factory of the future, selected to present at the in-person final round in Mumbai."
+            details={[
+              'Round 1 deck submitted',
+              'Qualified for the in-person final round',
+            ]}
+          />
+
+          <TimelineItem
+            title="Nomura KakushIN Innovation Contest"
+            subtitle="Project: ArthSaathi – Future Self AI"
+            date="2026"
+            description="Submitted an agentic financial literacy platform featuring a multi-agent AI Courtroom and a Future Self simulation to help users understand long-term financial decisions."
+            details={[
+              'Designed a multi-agent AI Courtroom debate mechanism for financial decisions',
+              'Built a Future Self simulation feature for long-term outcome visualization',
+            ]}
+          />
         </div>
       </div>
     </SectionContainer>

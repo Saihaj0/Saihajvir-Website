@@ -8,7 +8,7 @@ export function StatsDashboard() {
   const stats = [
     {
       label: 'Projects Completed',
-      value: '6+',
+      value: '12+',
       description: 'Full-stack, ML, and mobile applications',
       icon: Code2,
       color: 'text-blue-400',
@@ -22,7 +22,7 @@ export function StatsDashboard() {
     },
     {
       label: 'Hackathons & Events',
-      value: '3+',
+      value: '7+',
       description: 'Including Smart India Hackathon',
       icon: Trophy,
       color: 'text-green-400',

@@ -27,7 +27,7 @@ export function AboutSection() {
           <div className="mt-8 pt-8 border-t border-border">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div>
-                <p className="text-2xl font-bold text-accent">6+</p>
+                <p className="text-2xl font-bold text-accent">12+</p>
                 <p className="text-sm text-foreground/60">Projects</p>
               </div>
               <div>
