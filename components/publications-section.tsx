@@ -26,7 +26,7 @@ export function PublicationsSection() {
       abstract: 'This paper presents PaisaPilot, an AI-powered personal finance management platform built for India\'s 150M+ UPI users. The system uses a nine-agent, 18-stage pipeline combining LightGBM for transaction categorization, a Temporal Fusion Transformer for spend forecasting, and a Claude-based RAG coaching layer, targeting an F1 score of 0.90+ for categorization and tight MAPE bounds for forecasting accuracy. The paper has been accepted and is being finalized for the Springer proceedings.',
       topics: ['Fintech', 'Machine Learning', 'LightGBM', 'Temporal Fusion Transformer', 'RAG', 'UPI'],
       doi: '#',
-      certificate: undefined,
+      certificate: '/paisapilot-acceptance-letter.pdf',
       paper: '/paisapilot-research-paper.pdf',
     },
   ]
