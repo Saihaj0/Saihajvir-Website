@@ -18,6 +18,17 @@ export function PublicationsSection() {
       certificate: '/certificate.pdf',
       paper: '/research-paper.pdf',
     },
+    {
+      title: 'PaisaPilot: An AI-Powered Personal Finance Platform for Indian Youth',
+      authors: 'Saihajvir Singh',
+      conference: 'ICCTRDA 2026 (2nd International Conference on Computational Technologies for Research in Data Analytics)',
+      date: '2026',
+      abstract: 'This paper presents PaisaPilot, an AI-powered personal finance management platform built for India\'s 150M+ UPI users. The system uses a nine-agent, 18-stage pipeline combining LightGBM for transaction categorization, a Temporal Fusion Transformer for spend forecasting, and a Claude-based RAG coaching layer, targeting an F1 score of 0.90+ for categorization and tight MAPE bounds for forecasting accuracy. The paper has been accepted and is being finalized for the Springer proceedings.',
+      topics: ['Fintech', 'Machine Learning', 'LightGBM', 'Temporal Fusion Transformer', 'RAG', 'UPI'],
+      doi: '#',
+      certificate: undefined,
+      paper: undefined,
+    },
   ]
 
   return (
@@ -43,6 +54,11 @@ export function PublicationsSection() {
                   <p className="text-sm text-accent font-medium">
                     {pub.conference} • {pub.date}
                   </p>
+                  {!pub.paper && (
+                    <span className="inline-block mt-2 px-2.5 py-0.5 text-xs font-medium bg-accent/20 text-accent border border-accent/40 rounded-full">
+                      Accepted
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -66,29 +82,35 @@ export function PublicationsSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-4 border-t border-border">
-                <Button
-                  asChild
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 w-full sm:w-auto"
-                  size="sm"
-                >
-                  <a href={pub.paper} target="_blank" rel="noopener noreferrer">
-                    <BookOpen className="w-4 h-4" />
-                    Read Paper
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-border hover:border-accent hover:text-accent gap-2 w-full sm:w-auto"
-                  size="sm"
-                >
-                  <a href={pub.certificate} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                    Certificate
-                  </a>
-                </Button>
-              </div>
+              {(pub.paper || pub.certificate) && (
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-4 border-t border-border">
+                  {pub.paper && (
+                    <Button
+                      asChild
+                      className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 w-full sm:w-auto"
+                      size="sm"
+                    >
+                      <a href={pub.paper} target="_blank" rel="noopener noreferrer">
+                        <BookOpen className="w-4 h-4" />
+                        Read Paper
+                      </a>
+                    </Button>
+                  )}
+                  {pub.certificate && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-border hover:border-accent hover:text-accent gap-2 w-full sm:w-auto"
+                      size="sm"
+                    >
+                      <a href={pub.certificate} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4" />
+                        Certificate
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              )}
             </Card>
           ))}
         </div>
