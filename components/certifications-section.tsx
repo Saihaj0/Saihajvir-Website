@@ -26,7 +26,22 @@ const certifications = [
   {
     title: 'Full Stack Development',
     issuer: 'Meta (Coursera)',
-    date: 'In Progress',
+    date: 'Completed',
+  },
+  {
+    title: 'Managing Projects using AI',
+    issuer: 'Coursera',
+    date: 'Completed',
+  },
+  {
+    title: 'Ethical Hacker',
+    issuer: 'Cisco Networking Academy',
+    date: 'Completed',
+  },
+  {
+    title: 'AWS Academy Graduate - Cloud Architecting',
+    issuer: 'AWS Academy',
+    date: 'Completed',
   },
   {
     title: 'Research Paper Published',
