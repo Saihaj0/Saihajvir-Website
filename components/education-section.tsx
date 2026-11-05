@@ -15,7 +15,7 @@ export function EducationSection() {
             date="July 2023 - Aug 2027"
             description="Motivated B.Tech Computer Engineering student with strong foundations in software development, full-stack development, and machine learning."
             details={[
-              'CGPA: 3.02 / 4.00',
+              'CGPA: 3.09 / 4.00',
               'Focus Areas: AI, Web Development, Machine Learning, Software Engineering',
               'Proficient in: Java, Python, C++, JavaScript, React.js, Node.js, MongoDB, Firebase',
             ]}

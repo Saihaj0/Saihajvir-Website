@@ -31,7 +31,7 @@ export function AboutSection() {
                 <p className="text-sm text-foreground/60">Projects</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-accent">3.02</p>
+                <p className="text-2xl font-bold text-accent">3.09</p>
                 <p className="text-sm text-foreground/60">CGPA</p>
               </div>
               <div>
