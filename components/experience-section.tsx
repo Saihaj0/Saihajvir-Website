@@ -10,14 +10,14 @@ export function ExperienceSection() {
 
         <div className="relative">
           <TimelineItem
-            title="Intern — Wealth Management"
+            title="Wealth Management Intern"
             subtitle="HDFC Bank"
-            date="2026"
-            description="Worked with the Wealth Management team on data analytics and reporting, building dashboards and data models to support investment and client-facing decisions."
+            date="June 2026 - Aug 2026"
+            description="Worked with the Wealth Management team on data analytics and reporting, building dashboards and automated workflows to support investment and client-facing decisions."
             details={[
-              'Built interactive dashboards and reports using Power BI',
-              'Wrote DAX measures for data modeling and analysis',
-              'Applied data analytics to support wealth management workflows',
+              'Developed interactive Power BI dashboards for AUM analysis, client segmentation, and investment recommendation tracking',
+              'Created DAX measures and automated ETL/data transformation workflows using Power Query and Microsoft Excel',
+              'Analysed wealth management portfolios to generate insights on holdings, recommendations, and investment performance',
             ]}
           />
         </div>

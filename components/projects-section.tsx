@@ -48,8 +48,8 @@ const projects: Project[] = [
   },
   {
     title: 'PaisaPilot',
-    description: 'AI-powered personal finance management app for Indian youth, built as a B.Tech capstone project. Nine specialized AI agents run an 18-stage pipeline covering transaction categorization, spend forecasting, anomaly detection, and AI-driven coaching, targeting the 150M+ UPI user base.',
-    technologies: ['LightGBM', 'Temporal Fusion Transformer', 'Claude API', 'RAG', 'Python', 'UPI/SMS Parsing'],
+    description: 'AI-powered personal finance management app for Indian youth, built as a B.Tech capstone project, covering transaction categorization, spend forecasting, and anomaly detection. Achieves 75.5% accuracy (merchant-grouped evaluation) with an AUC of 0.918; research paper accepted at ICCTRDA 2026.',
+    technologies: ['React Native', 'FastAPI', 'PostgreSQL', 'scikit-learn'],
     githubUrl: 'https://github.com/Saihaj0',
   },
   {
@@ -66,14 +66,14 @@ const projects: Project[] = [
   },
   {
     title: 'RootLens',
-    description: 'AI-diagnosed incident detection system built as a Cloud Computing course project on AWS, developed with a team to automatically surface and explain root causes of infrastructure incidents.',
-    technologies: ['AWS', 'Python', 'Cloud Computing', 'Incident Detection'],
+    description: 'Serverless AI-diagnosed incident detection pipeline built as a Cloud Computing course project on AWS: CloudWatch alarms trigger Gemini-based diagnosis, with results stored in DynamoDB and alerts sent via SNS. Validated across 10 fault-injection trials with 71.4% correct diagnoses and no false alarms on normal runs.',
+    technologies: ['AWS Lambda', 'CloudWatch', 'DynamoDB', 'SNS', 'Gemini API', 'Python'],
     githubUrl: 'https://github.com/Saihaj0',
   },
   {
     title: 'TRACE-X – Explainable Digital Forensics Engine',
-    description: 'An explainable digital forensics engine designed to analyze evidence and surface transparent, interpretable reasoning behind its findings, aimed at making forensic AI outputs auditable and trustworthy.',
-    technologies: ['Python', 'Explainable AI', 'Digital Forensics'],
+    description: 'A forensics engine that reconstructs event timelines and correlation graphs with explainable findings, making forensic AI outputs auditable and trustworthy. Evaluated on 12 scenarios covering 98 events with an automated test suite and a full project report.',
+    technologies: ['Python', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'React'],
     githubUrl: 'https://github.com/Saihaj0',
   },
 ]
