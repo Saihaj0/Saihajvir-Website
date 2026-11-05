@@ -27,7 +27,7 @@ export function PublicationsSection() {
       topics: ['Fintech', 'Machine Learning', 'LightGBM', 'Temporal Fusion Transformer', 'RAG', 'UPI'],
       doi: '#',
       certificate: undefined,
-      paper: undefined,
+      paper: '/paisapilot-research-paper.pdf',
     },
   ]
 
