@@ -11,6 +11,14 @@ const tickerItems = [
   'TensorFlow', 'OpenCV', 'PyTorch', 'Firebase', 'Supabase', 'PostgreSQL', 'Power BI', 'AWS',
 ]
 
+// Draws an outline around the letters with shadows instead of a text stroke, which
+// shows stray inner lines where the font's contours overlap (visible in the H).
+const edge = 'rgba(165, 220, 255, 0.8)'
+const OUTLINE = [
+  `-1.5px 0 0 ${edge}`, `1.5px 0 0 ${edge}`, `0 -1.5px 0 ${edge}`, `0 1.5px 0 ${edge}`,
+  `-1px -1px 0 ${edge}`, `1px -1px 0 ${edge}`, `-1px 1px 0 ${edge}`, `1px 1px 0 ${edge}`,
+].join(', ')
+
 export function HeroSection() {
   const handleSmoothScroll = (href: string) => {
     const element = document.querySelector(href)
@@ -25,12 +33,18 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
           {/* Left Content */}
           <div className="flex flex-col">
-            <h1 className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight">
-              <span className="mb-3 block text-[0.4em] font-normal tracking-normal text-foreground/55">
+            <h1 className="font-semibold uppercase leading-[0.86] tracking-[-0.05em]">
+              <span className="mb-4 block text-lg font-normal normal-case leading-none tracking-normal text-foreground/55 sm:text-2xl">
                 Hi, I&apos;m
               </span>
-              <span className="bg-gradient-to-b from-white to-[var(--ice)] bg-clip-text text-transparent">
-                Saihajvir Singh
+              <span className="block text-[clamp(3rem,17vw,4.75rem)] text-foreground sm:text-[clamp(4rem,12vw,6rem)] lg:text-[clamp(4.5rem,8vw,6.75rem)]">
+                Saihajvir{' '}
+              </span>
+              <span
+                className="block cursor-default text-[clamp(3rem,17vw,4.75rem)] text-[#05080d] transition-colors duration-500 hover:text-[var(--ice)] sm:text-[clamp(4rem,12vw,6rem)] lg:text-[clamp(4.5rem,8vw,6.75rem)]"
+                style={{ textShadow: OUTLINE }}
+              >
+                Singh
               </span>
             </h1>
 
