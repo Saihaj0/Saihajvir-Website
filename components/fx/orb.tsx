@@ -83,6 +83,20 @@ export function Orb({ className }: { className?: string }) {
       return [x, y, z]
     }
 
+    // Colours come from CSS variables so the globe follows the dark/light theme.
+    const readPalette = () => {
+      const cs = getComputedStyle(document.documentElement)
+      const get = (name: string, fallback: string) => cs.getPropertyValue(name).trim() || fallback
+      return {
+        line: get('--orb-line', '165, 220, 255'),
+        dot: get('--orb-dot', '210, 240, 255'),
+        glow: get('--orb-glow', '120, 200, 255'),
+        sat: get('--orb-sat', '234, 246, 255'),
+        boost: parseFloat(get('--orb-boost', '1')) || 1,
+      }
+    }
+    let pal = readPalette()
+
     let W = 0
     let H = 0
     let dpr = 1
@@ -127,9 +141,9 @@ export function Orb({ className }: { className?: string }) {
 
       // Glow behind the globe.
       const g = ctx!.createRadialGradient(W / 2, H / 2, R * 0.15, W / 2, H / 2, R * 1.7)
-      g.addColorStop(0, 'rgba(120, 200, 255, 0.20)')
-      g.addColorStop(0.55, 'rgba(120, 200, 255, 0.06)')
-      g.addColorStop(1, 'rgba(120, 200, 255, 0)')
+      g.addColorStop(0, `rgba(${pal.glow}, ${0.2 * (pal.boost > 1 ? 0.7 : 1)})`)
+      g.addColorStop(0.55, `rgba(${pal.glow}, ${0.06 * (pal.boost > 1 ? 0.7 : 1)})`)
+      g.addColorStop(1, `rgba(${pal.glow}, 0)`)
       ctx!.fillStyle = g
       ctx!.fillRect(0, 0, W, H)
 
@@ -151,7 +165,7 @@ export function Orb({ className }: { className?: string }) {
       ctx!.lineWidth = 0.7
       lineBuckets.forEach((segs, level) => {
         if (!segs.length) return
-        ctx!.strokeStyle = `rgba(165, 220, 255, ${0.04 + (level / (BUCKETS - 1)) * 0.22})`
+        ctx!.strokeStyle = `rgba(${pal.line}, ${Math.min(1, (0.04 + (level / (BUCKETS - 1)) * 0.22) * pal.boost)})`
         ctx!.beginPath()
         for (const s of segs) {
           ctx!.moveTo(s[0], s[1])
@@ -169,7 +183,7 @@ export function Orb({ className }: { className?: string }) {
       pointBuckets.forEach((arr, level) => {
         if (!arr.length) return
         const t = level / (BUCKETS - 1)
-        ctx!.fillStyle = `rgba(210, 240, 255, ${0.25 + t * 0.7})`
+        ctx!.fillStyle = `rgba(${pal.dot}, ${Math.min(1, 0.25 + t * 0.7)})`
         const radius = 0.6 + t * 1.5
         ctx!.beginPath()
         for (const p of arr) {
@@ -187,7 +201,7 @@ export function Orb({ className }: { className?: string }) {
           const a = rp[s]
           const b = rp[(s + 1) % rp.length]
           const depth = (a[2] + b[2]) / 2
-          ctx!.strokeStyle = `rgba(165, 220, 255, ${0.06 + ((depth + 1.5) / 3) * 0.3})`
+          ctx!.strokeStyle = `rgba(${pal.line}, ${Math.min(1, (0.06 + ((depth + 1.5) / 3) * 0.3) * pal.boost)})`
           ctx!.beginPath()
           ctx!.moveTo(a[0], a[1])
           ctx!.lineTo(b[0], b[1])
@@ -195,8 +209,8 @@ export function Orb({ className }: { className?: string }) {
         }
         const ang = ring.phase + spin * ring.speed * 6
         const sat = project(ringPoint(ring.r, ang, ring.tx, ring.tz), ay * 0.35, ax)
-        ctx!.fillStyle = 'rgba(234, 246, 255, 0.95)'
-        ctx!.shadowColor = 'rgba(120, 200, 255, 0.9)'
+        ctx!.fillStyle = `rgba(${pal.sat}, 0.95)`
+        ctx!.shadowColor = `rgba(${pal.glow}, 0.9)`
         ctx!.shadowBlur = 14
         ctx!.beginPath()
         ctx!.arc(sat[0], sat[1], 2.6 + ((sat[2] + 1.5) / 3) * 1.6, 0, Math.PI * 2)
@@ -237,6 +251,12 @@ export function Orb({ className }: { className?: string }) {
       else if (visible) start()
     }
 
+    const themeObserver = new MutationObserver(() => {
+      pal = readPalette()
+      if (reduce) draw()
+    })
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
     resize()
@@ -256,6 +276,7 @@ export function Orb({ className }: { className?: string }) {
     return () => {
       stop()
       ro.disconnect()
+      themeObserver.disconnect()
       io.disconnect()
       window.removeEventListener('pointermove', onMove)
       document.removeEventListener('visibilitychange', onVisibility)

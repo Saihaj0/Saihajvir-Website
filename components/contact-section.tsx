@@ -59,7 +59,7 @@ export function ContactSection() {
   }
 
   const field =
-    'w-full rounded-xl border border-border bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-foreground/35 outline-none transition-colors focus:border-accent focus:bg-white/[0.06] focus:ring-2 focus:ring-accent/25 disabled:opacity-60'
+    'w-full rounded-xl border border-border bg-foreground/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-foreground/35 outline-none transition-colors focus:border-accent focus:bg-foreground/[0.06] focus:ring-2 focus:ring-accent/25 disabled:opacity-60'
 
   const rows = [
     {

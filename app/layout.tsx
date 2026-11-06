@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import { PageFx } from '@/components/fx/page-fx'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#05080d',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#05080d' },
+    { media: '(prefers-color-scheme: light)', color: '#f3f7fb' },
+  ],
 }
 
 export default function RootLayout({
@@ -25,12 +29,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark bg-background ${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`bg-background ${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="font-sans antialiased">
-        <div className="bg-grid" aria-hidden="true" />
-        <div className="bg-noise" aria-hidden="true" />
-        <PageFx />
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <div className="bg-grid" aria-hidden="true" />
+          <div className="bg-noise" aria-hidden="true" />
+          <PageFx />
+          {children}
+        </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

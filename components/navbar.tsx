@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Github, Linkedin, Download, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -59,7 +60,7 @@ export function Navbar() {
         <div
           className={cn(
             'glass flex h-14 items-center justify-between rounded-full pl-3 pr-2 transition-all duration-500',
-            scrolled ? 'bg-[#05080d]/70 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.8)]' : 'bg-transparent'
+            scrolled ? 'bg-background/70 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.45)]' : 'bg-transparent'
           )}
         >
           {/* Logo */}
@@ -96,7 +97,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="hidden size-9 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-white/5 hover:text-accent sm:flex"
+              className="hidden size-9 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-accent sm:flex"
             >
               <Github className="size-[18px]" />
             </a>
@@ -105,10 +106,12 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="hidden size-9 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-white/5 hover:text-accent sm:flex"
+              className="hidden size-9 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-accent sm:flex"
             >
               <Linkedin className="size-[18px]" />
             </a>
+
+            <ThemeToggle />
 
             <button
               type="button"
@@ -132,7 +135,7 @@ export function Navbar() {
         </div>
 
         {menuOpen && (
-          <div className="glass mt-2 rounded-3xl bg-[#070c13]/95 p-3 shadow-2xl xl:hidden">
+          <div className="glass mt-2 rounded-3xl bg-popover/95 p-3 shadow-2xl xl:hidden">
             <div className="grid grid-cols-2 gap-1 sm:grid-cols-3">
               {navLinks.map((link) => (
                 <a
@@ -144,7 +147,7 @@ export function Navbar() {
                   }}
                   className={cn(
                     'rounded-xl px-3 py-2.5 text-sm transition-colors',
-                    active === link.href ? 'bg-accent/15 text-accent' : 'text-foreground/80 hover:bg-white/5 hover:text-accent'
+                    active === link.href ? 'bg-accent/15 text-accent' : 'text-foreground/80 hover:bg-foreground/5 hover:text-accent'
                   )}
                 >
                   {link.label}

@@ -13,7 +13,7 @@ const tickerItems = [
 
 // Draws an outline around the letters with shadows instead of a text stroke, which
 // shows stray inner lines where the font's contours overlap (visible in the H).
-const edge = 'rgba(165, 220, 255, 0.8)'
+const edge = 'var(--outline-edge)'
 const OUTLINE = [
   `-1.5px 0 0 ${edge}`, `1.5px 0 0 ${edge}`, `0 -1.5px 0 ${edge}`, `0 1.5px 0 ${edge}`,
   `-1px -1px 0 ${edge}`, `1px -1px 0 ${edge}`, `-1px 1px 0 ${edge}`, `1px 1px 0 ${edge}`,
@@ -41,7 +41,7 @@ export function HeroSection() {
                 Saihajvir{' '}
               </span>
               <span
-                className="block cursor-default text-[clamp(2.5rem,13.5vw,3.75rem)] text-[#05080d] transition-colors duration-500 hover:text-[var(--ice)] sm:text-[clamp(3.25rem,9.5vw,4.75rem)] lg:text-[clamp(3.75rem,6.4vw,5.25rem)]"
+                className="block cursor-default text-[clamp(2.5rem,13.5vw,3.75rem)] text-background transition-colors duration-500 hover:text-[var(--ice)] sm:text-[clamp(3.25rem,9.5vw,4.75rem)] lg:text-[clamp(3.75rem,6.4vw,5.25rem)]"
                 style={{ textShadow: OUTLINE }}
               >
                 Singh
@@ -76,7 +76,7 @@ export function HeroSection() {
           <div className="relative mx-auto aspect-square w-full max-w-[300px] sm:max-w-[460px] lg:max-w-[540px]">
             <Orb className="absolute inset-0 size-full" />
 
-            <div className="absolute left-1/2 top-1/2 aspect-square w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_200deg,#a5dcff,#05080d_30%,#a5dcff_55%,#05080d_80%,#a5dcff)] p-[2px] shadow-[0_0_80px_-10px_var(--glow)]">
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_200deg,var(--ice),var(--background)_30%,var(--ice)_55%,var(--background)_80%,var(--ice))] p-[2px] shadow-[0_0_80px_-10px_var(--glow)]">
               <div className="relative size-full overflow-hidden rounded-full bg-background">
                 <Image
                   src="/images/Saihaj formals final.png"

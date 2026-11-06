@@ -6,10 +6,68 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Ice Mono: near-black with a cold blue cast, text in ice white, one ice-blue accent.
-  The site is dark only, so :root and .dark share the same values.
+  Ice Mono. Dark is the default: near-black with a cold blue cast, ice-white text and one
+  ice-blue accent. The light theme keeps the same structure on a cool white background with
+  a deeper blue accent so text stays readable. The theme is switched by the .dark class on <html>.
 */
-:root,
+:root {
+  --background: #f3f7fb;
+  --foreground: #0a1622;
+  --card: rgba(255, 255, 255, 0.65);
+  --card-foreground: #0a1622;
+  --popover: #ffffff;
+  --popover-foreground: #0a1622;
+  --primary: #0b6aae;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(10, 40, 70, 0.06);
+  --secondary-foreground: #0a1622;
+  --muted: rgba(10, 40, 70, 0.06);
+  --muted-foreground: #4a6078;
+  --accent: #0b6aae;
+  --accent-foreground: #ffffff;
+  --destructive: #d13b3b;
+  --destructive-foreground: #ffffff;
+  --border: rgba(10, 60, 110, 0.16);
+  --input: rgba(10, 40, 70, 0.05);
+  --ring: #0b6aae;
+  --chart-1: #0b6aae;
+  --chart-2: #2a8bd1;
+  --chart-3: #0a4a7d;
+  --chart-4: #5aa9e6;
+  --chart-5: #0a1622;
+  --radius: 0.9rem;
+  --sidebar: #f3f7fb;
+  --sidebar-foreground: #0a1622;
+  --sidebar-primary: #0b6aae;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0b6aae;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(10, 60, 110, 0.16);
+  --sidebar-ring: #0b6aae;
+
+  --ice: #0b6aae;
+  --ice-soft: rgba(11, 106, 174, 0.12);
+  --glow: rgba(11, 106, 174, 0.35);
+  --glow-soft: rgba(11, 106, 174, 0.09);
+
+  --grid: rgba(11, 80, 140, 0.07);
+  --glass-a: rgba(255, 255, 255, 0.78);
+  --glass-b: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 30px -14px rgba(10, 40, 80, 0.25);
+  --spot: rgba(11, 106, 174, 0.12);
+  --outline-edge: rgba(11, 106, 174, 0.85);
+  --noise-opacity: 0.025;
+
+  /* globe colours, as r, g, b */
+  --orb-line: 11, 106, 174;
+  --orb-dot: 8, 78, 134;
+  --orb-glow: 11, 106, 174;
+  --orb-sat: 8, 78, 134;
+  --orb-boost: 1.7;
+
+  color-scheme: light;
+}
+
 .dark {
   --background: #05080d;
   --foreground: #eaf4ff;
@@ -35,7 +93,6 @@
   --chart-3: #d6ecff;
   --chart-4: #5aa9e6;
   --chart-5: #ffffff;
-  --radius: 0.9rem;
   --sidebar: #05080d;
   --sidebar-foreground: #eaf4ff;
   --sidebar-primary: #a5dcff;
@@ -48,6 +105,23 @@
   --ice: #a5dcff;
   --ice-soft: rgba(165, 220, 255, 0.14);
   --glow: rgba(120, 200, 255, 0.35);
+  --glow-soft: rgba(120, 200, 255, 0.1);
+
+  --grid: rgba(165, 220, 255, 0.05);
+  --glass-a: rgba(255, 255, 255, 0.05);
+  --glass-b: rgba(255, 255, 255, 0.02);
+  --glass-shadow: none;
+  --spot: rgba(165, 220, 255, 0.16);
+  --outline-edge: rgba(165, 220, 255, 0.8);
+  --noise-opacity: 0.05;
+
+  --orb-line: 165, 220, 255;
+  --orb-dot: 210, 240, 255;
+  --orb-glow: 120, 200, 255;
+  --orb-sat: 234, 246, 255;
+  --orb-boost: 1;
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -98,7 +172,6 @@
   }
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground;
@@ -107,7 +180,7 @@
   }
   ::selection {
     background: var(--ice);
-    color: #04101a;
+    color: var(--accent-foreground);
   }
   h1, h2, h3 {
     text-wrap: balance;
@@ -123,8 +196,8 @@
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(165, 220, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(165, 220, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
@@ -136,7 +209,7 @@
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: var(--noise-opacity);
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
@@ -144,8 +217,9 @@
 /* ---------- Surfaces ---------- */
 
 .glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, var(--glass-a), var(--glass-b));
   border: 1px solid var(--border);
+  box-shadow: var(--glass-shadow);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
@@ -164,13 +238,13 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(165, 220, 255, 0.16), transparent 60%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 60%);
 }
 .spot:hover::before {
   opacity: 1;
 }
 .spot:hover {
-  border-color: rgba(165, 220, 255, 0.4);
+  border-color: color-mix(in oklab, var(--ice) 45%, transparent);
 }
 
 /* Slowly travelling light around the edge of the featured card. */
@@ -189,7 +263,7 @@
   border-radius: inherit;
   padding: 1px;
   pointer-events: none;
-  background: conic-gradient(from var(--beam), transparent 0 70%, rgba(165, 220, 255, 0.9) 85%, transparent 100%);
+  background: conic-gradient(from var(--beam), transparent 0 70%, var(--ice) 85%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
@@ -219,7 +293,7 @@
 }
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(165, 220, 255, 0.28);
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--ice) 30%, transparent);
 }
 
 /* ---------- Motion ---------- */

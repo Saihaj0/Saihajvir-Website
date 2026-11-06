@@ -60,7 +60,7 @@ export function PageFx() {
       <div
         ref={glow}
         className="pointer-events-none fixed left-0 top-0 z-[1] h-[600px] w-[600px] rounded-full opacity-0 transition-opacity duration-500"
-        style={{ background: 'radial-gradient(circle, rgba(120,200,255,0.10), transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, var(--glow-soft), transparent 65%)' }}
         aria-hidden="true"
       />
     </>

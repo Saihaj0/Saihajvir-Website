@@ -32,7 +32,7 @@ export function FeaturedProject() {
                 sizes="(min-width: 1024px) 520px, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05080d]/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
               <div className="glass absolute bottom-4 left-4 rounded-full px-4 py-1.5">
                 <span className="eyebrow !text-accent">95% accuracy</span>
               </div>

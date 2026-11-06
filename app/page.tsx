@@ -13,7 +13,7 @@ import { CertificationsSection } from '@/components/certifications-section'
 import { AchievementsSection } from '@/components/achievements-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
-import { Toaster } from 'sonner'
+import { Toaster } from '@/components/ui/sonner'
 
 export default function Home() {
   return (
@@ -35,7 +35,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
-      <Toaster theme="dark" />
+      <Toaster />
     </>
   )
 }
