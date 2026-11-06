@@ -37,11 +37,11 @@ export function HeroSection() {
               <span className="mb-4 block text-lg font-normal normal-case leading-none tracking-normal text-foreground/55 sm:text-2xl">
                 Hi, I&apos;m
               </span>
-              <span className="block text-[clamp(3rem,17vw,4.75rem)] text-foreground sm:text-[clamp(4rem,12vw,6rem)] lg:text-[clamp(4.5rem,8vw,6.75rem)]">
+              <span className="block text-[clamp(2.5rem,13.5vw,3.75rem)] text-foreground sm:text-[clamp(3.25rem,9.5vw,4.75rem)] lg:text-[clamp(3.75rem,6.4vw,5.25rem)]">
                 Saihajvir{' '}
               </span>
               <span
-                className="block cursor-default text-[clamp(3rem,17vw,4.75rem)] text-[#05080d] transition-colors duration-500 hover:text-[var(--ice)] sm:text-[clamp(4rem,12vw,6rem)] lg:text-[clamp(4.5rem,8vw,6.75rem)]"
+                className="block cursor-default text-[clamp(2.5rem,13.5vw,3.75rem)] text-[#05080d] transition-colors duration-500 hover:text-[var(--ice)] sm:text-[clamp(3.25rem,9.5vw,4.75rem)] lg:text-[clamp(3.75rem,6.4vw,5.25rem)]"
                 style={{ textShadow: OUTLINE }}
               >
                 Singh
