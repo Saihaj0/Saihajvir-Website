@@ -298,6 +298,16 @@
 
 /* ---------- Motion ---------- */
 
+@keyframes wf-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+.wf-flow {
+  stroke-dasharray: 4 6;
+  animation: wf-flow 1.2s linear infinite;
+}
+
 .reveal-hidden {
   opacity: 0;
   transform: translateY(28px);
@@ -361,6 +371,7 @@
     transform: none;
     filter: none;
   }
+  .wf-flow,
   .marquee-track,
   .float-y,
   .ping-soft,

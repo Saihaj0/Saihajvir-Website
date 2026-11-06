@@ -4,7 +4,7 @@ import { Reveal } from '@/components/fx/reveal'
 import { Chip } from '@/components/chip'
 import { btnGhost, btnPrimary } from '@/lib/styles'
 import { Github, ExternalLink, Check } from 'lucide-react'
-import Image from 'next/image'
+import { WildfireDiagram } from '@/components/wildfire-diagram'
 
 export function FeaturedProject() {
   const features = [
@@ -25,17 +25,7 @@ export function FeaturedProject() {
           <div className="grid grid-cols-1 gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
             {/* Image */}
             <div className="relative aspect-square w-full self-center overflow-hidden rounded-2xl border border-border">
-              <Image
-                src="/images/wildfire-detection.jpg"
-                alt="Wildfire Detection System with thermal imaging and CNN visualization"
-                fill
-                sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-              <div className="glass absolute bottom-4 left-4 rounded-full px-4 py-1.5">
-                <span className="eyebrow !text-accent">95% accuracy</span>
-              </div>
+              <WildfireDiagram className="absolute inset-0 size-full" />
             </div>
 
             {/* Content */}
