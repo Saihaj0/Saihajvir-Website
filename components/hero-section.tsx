@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'lucide-react'
 import { Orb } from '@/components/fx/orb'
-import { ScrambleText } from '@/components/fx/scramble-text'
 import { Marquee } from '@/components/fx/marquee'
 import { btnGhost, btnPrimary } from '@/lib/styles'
 
@@ -26,23 +25,12 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
           {/* Left Content */}
           <div className="flex flex-col">
-            <div className="glass mb-8 inline-flex w-fit items-center gap-3 rounded-full px-4 py-2">
-              <span className="relative flex size-2">
-                <span className="ping-soft absolute inline-flex size-full rounded-full bg-accent" />
-                <span className="relative inline-flex size-2 rounded-full bg-accent" />
+            <h1 className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight">
+              <span className="mb-3 block text-[0.4em] font-normal tracking-normal text-foreground/55">
+                Hi, I&apos;m
               </span>
-              <span className="eyebrow !text-foreground/70">Seeking opportunities</span>
-            </div>
-
-            <h1 className="text-[clamp(2.75rem,9vw,6.25rem)] font-semibold leading-[0.92] tracking-tighter">
-              <span className="mb-3 block text-[0.34em] font-normal tracking-normal text-foreground/50">
-                Hi, I&apos;m{' '}
-              </span>
-              <span className="block">
-                <ScrambleText text="Saihajvir" duration={1100} />{' '}
-              </span>
-              <span className="block">
-                <ScrambleText text="Singh" className="serif-em" delay={350} duration={900} />
+              <span className="bg-gradient-to-b from-white to-[var(--ice)] bg-clip-text text-transparent">
+                Saihajvir Singh
               </span>
             </h1>
 
