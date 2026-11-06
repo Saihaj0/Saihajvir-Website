@@ -1,82 +1,59 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
+/*
+  Ice Mono: near-black with a cold blue cast, text in ice white, one ice-blue accent.
+  The site is dark only, so :root and .dark share the same values.
+*/
+:root,
 .dark {
-  --background: #0d1117;
-  --foreground: #ffffff;
-  --card: #161b22;
-  --card-foreground: #ffffff;
-  --popover: #161b22;
-  --popover-foreground: #ffffff;
-  --primary: #58a6ff;
-  --primary-foreground: #0d1117;
-  --secondary: #30363d;
-  --secondary-foreground: #ffffff;
-  --muted: #30363d;
-  --muted-foreground: #8b949e;
-  --accent: #58a6ff;
-  --accent-foreground: #0d1117;
-  --destructive: #f85149;
+  --background: #05080d;
+  --foreground: #eaf4ff;
+  --card: rgba(255, 255, 255, 0.035);
+  --card-foreground: #eaf4ff;
+  --popover: #0a1119;
+  --popover-foreground: #eaf4ff;
+  --primary: #a5dcff;
+  --primary-foreground: #04101a;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #eaf4ff;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #8da2b8;
+  --accent: #a5dcff;
+  --accent-foreground: #04101a;
+  --destructive: #ff7b7b;
   --destructive-foreground: #ffffff;
-  --border: #30363d;
-  --input: #0d1117;
-  --ring: #58a6ff;
-  --chart-1: #58a6ff;
-  --chart-2: #79c0ff;
-  --chart-3: #d29922;
-  --chart-4: #3fb950;
-  --chart-5: #f85149;
-  --sidebar: #0d1117;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #58a6ff;
-  --sidebar-primary-foreground: #0d1117;
-  --sidebar-accent: #58a6ff;
-  --sidebar-accent-foreground: #0d1117;
-  --sidebar-border: #30363d;
-  --sidebar-ring: #58a6ff;
+  --border: rgba(180, 220, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.04);
+  --ring: #a5dcff;
+  --chart-1: #a5dcff;
+  --chart-2: #7cc4f5;
+  --chart-3: #d6ecff;
+  --chart-4: #5aa9e6;
+  --chart-5: #ffffff;
+  --radius: 0.9rem;
+  --sidebar: #05080d;
+  --sidebar-foreground: #eaf4ff;
+  --sidebar-primary: #a5dcff;
+  --sidebar-primary-foreground: #04101a;
+  --sidebar-accent: #a5dcff;
+  --sidebar-accent-foreground: #04101a;
+  --sidebar-border: rgba(180, 220, 255, 0.12);
+  --sidebar-ring: #a5dcff;
+
+  --ice: #a5dcff;
+  --ice-soft: rgba(165, 220, 255, 0.14);
+  --glow: rgba(120, 200, 255, 0.35);
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -119,7 +96,204 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--ice);
+    color: #04101a;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+/* ---------- Page atmosphere ---------- */
+
+/* Faint blueprint grid that fades out toward the bottom of the first screens. */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(165, 220, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(165, 220, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+}
+
+/* Fine film grain so the flat black has some texture. */
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- Surfaces ---------- */
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Card with a cursor-following spotlight and a 3D tilt (see components/fx/tilt-card.tsx). */
+.spot {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease-out, border-color 0.3s;
+}
+.spot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(165, 220, 255, 0.16), transparent 60%);
+}
+.spot:hover::before {
+  opacity: 1;
+}
+.spot:hover {
+  border-color: rgba(165, 220, 255, 0.4);
+}
+
+/* Slowly travelling light around the edge of the featured card. */
+@property --beam {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.beam {
+  position: relative;
+}
+.beam::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(from var(--beam), transparent 0 70%, rgba(165, 220, 255, 0.9) 85%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: beam-spin 6s linear infinite;
+}
+@keyframes beam-spin {
+  to {
+    --beam: 360deg;
+  }
+}
+
+/* ---------- Type helpers ---------- */
+
+.serif-em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ice);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(165, 220, 255, 0.28);
+}
+
+/* ---------- Motion ---------- */
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(8px);
+}
+.reveal-show {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-speed, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.float-y {
+  animation: float-y 6s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.ping-soft {
+  animation: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .marquee-track,
+  .float-y,
+  .ping-soft,
+  .beam::after {
+    animation: none;
+  }
+  .spot {
+    transform: none !important;
   }
 }

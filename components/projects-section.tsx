@@ -1,5 +1,7 @@
 import { SectionContainer } from './section-container'
 import { ProjectCard } from './project-card'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
 
 type Project = {
   title: string
@@ -81,22 +83,21 @@ const projects: Project[] = [
 export function ProjectsSection() {
   return (
     <SectionContainer id="projects">
-      <div className="max-w-6xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Other Projects</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="05" title="Other" accent="Projects" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, i) => (
+          <Reveal key={project.title} delay={(i % 3) * 90} className="h-full">
             <ProjectCard
-              key={project.title}
+              index={i}
               title={project.title}
               description={project.description}
               technologies={project.technologies}
               githubUrl={project.githubUrl}
               liveUrl={project.liveUrl}
             />
-          ))}
-        </div>
+          </Reveal>
+        ))}
       </div>
     </SectionContainer>
   )

@@ -1,24 +1,26 @@
-import { Card } from '@/components/ui/card'
+import { TiltCard } from '@/components/fx/tilt-card'
+import { Chip } from '@/components/chip'
 
 interface SkillCardProps {
   title: string
   skills: string[]
+  index?: number
 }
 
-export function SkillCard({ title, skills }: SkillCardProps) {
+export function SkillCard({ title, skills, index }: SkillCardProps) {
   return (
-    <Card className="bg-card border border-border hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 p-6">
-      <h3 className="text-lg font-semibold text-foreground mb-4">{title}</h3>
+    <TiltCard className="h-full p-6">
+      <div className="mb-5 flex items-center justify-between">
+        <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
+        {index !== undefined && (
+          <span className="font-mono text-xs text-accent/70">{String(index + 1).padStart(2, '0')}</span>
+        )}
+      </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
-          <span
-            key={skill}
-            className="inline-block px-3 py-1 text-sm bg-secondary/50 text-foreground/90 rounded-full hover:bg-accent/20 hover:text-accent transition-colors"
-          >
-            {skill}
-          </span>
+          <Chip key={skill}>{skill}</Chip>
         ))}
       </div>
-    </Card>
+    </TiltCard>
   )
 }

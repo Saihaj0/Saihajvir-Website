@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-background">
+      <main className="relative">
         <HeroSection />
         <AboutSection />
         <ExperienceSection />

@@ -1,9 +1,10 @@
-'use client'
-
 import { SectionContainer } from './section-container'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { ExternalLink, Calendar, ArrowRight } from 'lucide-react'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
+import { TiltCard } from '@/components/fx/tilt-card'
+import { Chip } from '@/components/chip'
+import { btnPrimary } from '@/lib/styles'
+import { ExternalLink, Calendar, ArrowUpRight } from 'lucide-react'
 
 export function BlogSection() {
   const articles = [
@@ -42,71 +43,74 @@ export function BlogSection() {
     },
   ]
 
+  const [featured, ...rest] = articles
+
   return (
     <SectionContainer id="blog">
-      <div className="max-w-5xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Blog & Articles</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="08" title="Blog &" accent="Articles" />
 
-        <div className="space-y-6">
-          {articles.map((article, idx) => (
-            <Card
-              key={idx}
-              className={`border transition-all hover:border-accent/50 ${
-                article.featured
-                  ? 'bg-gradient-to-r from-accent/10 to-accent/5 border-accent/30 p-8'
-                  : 'bg-card border-border p-6'
-              } flex flex-col gap-6`}
-            >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-3">
-                    {article.featured && (
-                      <span className="inline-block px-3 py-1 text-xs font-semibold bg-accent/20 text-accent rounded-full uppercase tracking-wider">
-                        Featured
-                      </span>
-                    )}
-                    <span className="flex items-center gap-1 text-sm text-foreground/60">
-                      <Calendar className="w-4 h-4" />
+      <div className="space-y-5">
+        <Reveal>
+          <div className="beam glass rounded-3xl p-6 sm:p-10">
+            <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="rounded-full bg-accent/15 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent">
+                Featured
+              </span>
+              <span className="flex items-center gap-1.5 text-sm text-foreground/60">
+                <Calendar className="size-4" />
+                {featured.date}
+              </span>
+              <span className="text-sm text-foreground/60">•</span>
+              <span className="text-sm text-foreground/60">{featured.readTime}</span>
+            </div>
+            <h3 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
+              {featured.title}
+            </h3>
+            <p className="mt-5 max-w-2xl leading-relaxed text-foreground/70">{featured.description}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {featured.tags.map((tag) => (
+                <Chip key={tag}>{tag}</Chip>
+              ))}
+            </div>
+            <a href={featured.url} target="_blank" rel="noopener noreferrer" className={`${btnPrimary} mt-8`}>
+              Read Article
+              <ExternalLink className="size-4" />
+            </a>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {rest.map((article, idx) => (
+            <Reveal key={article.title} delay={idx * 90} className="h-full">
+              <TiltCard className="h-full p-6">
+                <div className="flex h-full flex-col">
+                  <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground/60">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="size-4" />
                       {article.date}
                     </span>
-                    <span className="text-sm text-foreground/60">•</span>
-                    <span className="text-sm text-foreground/60">{article.readTime}</span>
+                    <span>•</span>
+                    <span>{article.readTime}</span>
                   </div>
-
-                  <h3 className="text-2xl font-bold text-foreground mb-3">
-                    {article.title}
-                  </h3>
-
-                  <p className="text-foreground/70 mb-4 leading-relaxed">
-                    {article.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <h3 className="mb-3 text-xl font-semibold leading-snug tracking-tight text-foreground">{article.title}</h3>
+                  <p className="mb-5 text-sm leading-relaxed text-foreground/65">{article.description}</p>
+                  <div className="mb-6 mt-auto flex flex-wrap gap-2">
                     {article.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block px-3 py-1 text-xs bg-secondary/50 text-foreground/80 rounded-full"
-                      >
-                        {tag}
-                      </span>
+                      <Chip key={tag}>{tag}</Chip>
                     ))}
                   </div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                    <Button
-                      asChild
-                      className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 w-full sm:w-auto"
-                    >
-                      <a href={article.url} target="_blank" rel="noopener noreferrer">
-                        Read Article
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </Button>
-                  </div>
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit items-center gap-2 border-b border-accent/40 pb-0.5 text-sm font-medium text-accent transition-colors hover:border-accent"
+                  >
+                    Read Article
+                    <ArrowUpRight className="size-4" />
+                  </a>
                 </div>
-              </div>
-            </Card>
+              </TiltCard>
+            </Reveal>
           ))}
         </div>
       </div>

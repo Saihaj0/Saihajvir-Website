@@ -1,5 +1,7 @@
 import { SectionContainer } from './section-container'
 import { SkillCard } from './skill-card'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
 
 const skillCategories = [
   {
@@ -31,19 +33,14 @@ const skillCategories = [
 export function SkillsSection() {
   return (
     <SectionContainer id="skills">
-      <div className="max-w-6xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Skills & Technologies</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="03" title="Skills &" accent="Technologies" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {skillCategories.map((category) => (
-            <SkillCard
-              key={category.title}
-              title={category.title}
-              skills={category.skills}
-            />
-          ))}
-        </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {skillCategories.map((category, i) => (
+          <Reveal key={category.title} delay={(i % 3) * 90} className="h-full">
+            <SkillCard title={category.title} skills={category.skills} index={i} />
+          </Reveal>
+        ))}
       </div>
     </SectionContainer>
   )

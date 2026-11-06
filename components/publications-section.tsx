@@ -1,8 +1,9 @@
-'use client'
-
 import { SectionContainer } from './section-container'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
+import { TiltCard } from '@/components/fx/tilt-card'
+import { Chip } from '@/components/chip'
+import { btnGhost, btnPrimary } from '@/lib/styles'
 import { BookOpen, ExternalLink } from 'lucide-react'
 
 export function PublicationsSection() {
@@ -33,87 +34,60 @@ export function PublicationsSection() {
 
   return (
     <SectionContainer id="publications">
-      <div className="max-w-4xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Publications & Research</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="06" title="Publications &" accent="Research" />
 
-        <div className="space-y-6">
-          {publications.map((pub, idx) => (
-            <Card key={idx} className="bg-card border border-border p-8">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-6 mb-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-accent/20 border border-accent/50 flex items-center justify-center">
-                  <BookOpen className="w-6 h-6 text-accent" />
+      <div className="space-y-6">
+        {publications.map((pub, idx) => (
+          <Reveal key={idx} delay={idx * 100}>
+            <TiltCard className="p-6 sm:p-9">
+              <div className="mb-6 flex flex-col gap-5 sm:flex-row sm:items-start">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10">
+                  <BookOpen className="size-5 text-accent" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">
-                    {pub.title}
-                  </h3>
-                  <p className="text-sm text-foreground/60 mb-1">
-                    {pub.authors}
-                  </p>
-                  <p className="text-sm text-accent font-medium">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-3xl">{pub.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/60">{pub.authors}</p>
+                  <p className="mt-1 text-sm font-medium text-accent">
                     {pub.conference} • {pub.date}
                   </p>
                   {!pub.paper && (
-                    <span className="inline-block mt-2 px-2.5 py-0.5 text-xs font-medium bg-accent/20 text-accent border border-accent/40 rounded-full">
+                    <span className="mt-3 inline-block rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 text-xs font-medium text-accent">
                       Accepted
                     </span>
                   )}
                 </div>
               </div>
 
-              <p className="text-foreground/70 mb-4 leading-relaxed">
-                {pub.abstract}
-              </p>
+              <p className="mb-6 leading-relaxed text-foreground/70">{pub.abstract}</p>
 
-              <div className="mb-6">
-                <p className="text-xs font-semibold text-foreground mb-2 uppercase tracking-wider">
-                  Keywords
-                </p>
+              <div className="mb-7">
+                <p className="eyebrow mb-3">Keywords</p>
                 <div className="flex flex-wrap gap-2">
                   {pub.topics.map((topic) => (
-                    <span
-                      key={topic}
-                      className="inline-block px-3 py-1 text-xs bg-secondary/50 text-foreground/80 rounded-full"
-                    >
-                      {topic}
-                    </span>
+                    <Chip key={topic}>{topic}</Chip>
                   ))}
                 </div>
               </div>
 
               {(pub.paper || pub.certificate) && (
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-4 border-t border-border">
+                <div className="flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
                   {pub.paper && (
-                    <Button
-                      asChild
-                      className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 w-full sm:w-auto"
-                      size="sm"
-                    >
-                      <a href={pub.paper} target="_blank" rel="noopener noreferrer">
-                        <BookOpen className="w-4 h-4" />
-                        Read Paper
-                      </a>
-                    </Button>
+                    <a href={pub.paper} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+                      <BookOpen className="size-4" />
+                      Read Paper
+                    </a>
                   )}
                   {pub.certificate && (
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="border-border hover:border-accent hover:text-accent gap-2 w-full sm:w-auto"
-                      size="sm"
-                    >
-                      <a href={pub.certificate} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4" />
-                        Certificate
-                      </a>
-                    </Button>
+                    <a href={pub.certificate} target="_blank" rel="noopener noreferrer" className={btnGhost}>
+                      <ExternalLink className="size-4" />
+                      Certificate
+                    </a>
                   )}
                 </div>
               )}
-            </Card>
-          ))}
-        </div>
+            </TiltCard>
+          </Reveal>
+        ))}
       </div>
     </SectionContainer>
   )

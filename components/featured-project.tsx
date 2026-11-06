@@ -1,7 +1,9 @@
 import { SectionContainer } from './section-container'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Github, ExternalLink } from 'lucide-react'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
+import { Chip } from '@/components/chip'
+import { btnGhost, btnPrimary } from '@/lib/styles'
+import { Github, ExternalLink, Check } from 'lucide-react'
 import Image from 'next/image'
 
 export function FeaturedProject() {
@@ -16,90 +18,74 @@ export function FeaturedProject() {
 
   return (
     <SectionContainer id="featured">
-      <div className="max-w-6xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Featured Project</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="04" title="Featured" accent="Project" />
 
-        <Card className="bg-card border border-border overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+      <Reveal>
+        <div className="beam glass overflow-hidden rounded-3xl">
+          <div className="grid grid-cols-1 gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
             {/* Image */}
-            <div className="flex items-center justify-center rounded-xl border border-accent/30 min-h-[280px] sm:min-h-[340px] md:min-h-96 overflow-hidden bg-gradient-to-br from-accent/10 to-accent/5">
+            <div className="relative aspect-square w-full self-center overflow-hidden rounded-2xl border border-border">
               <Image
                 src="/images/wildfire-detection.jpg"
                 alt="Wildfire Detection System with thermal imaging and CNN visualization"
-                width={500}
-                height={400}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 520px, 100vw"
+                className="object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05080d]/70 via-transparent to-transparent" />
+              <div className="glass absolute bottom-4 left-4 rounded-full px-4 py-1.5">
+                <span className="eyebrow !text-accent">95% accuracy</span>
+              </div>
             </div>
 
             {/* Content */}
             <div className="flex flex-col justify-center">
-              <h3 className="text-3xl font-bold text-foreground mb-3">
-                Wildfire Detection System
-              </h3>
-              <p className="text-foreground/70 mb-2 text-sm">
-                <span className="text-accent font-semibold">July 2025 - Dec 2025</span>
-              </p>
-              <p className="text-foreground/70 mb-6">
+              <h3 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Wildfire Detection System</h3>
+              <p className="eyebrow mt-3 !text-accent">July 2025 - Dec 2025</p>
+              <p className="mt-5 leading-relaxed text-foreground/70">
                 A cutting-edge CNN-based wildfire detection model leveraging deep learning to identify wildfire-prone regions with high accuracy. The system uses 4-channel input combining RGB and thermal imaging data to achieve 95% accuracy in detecting potential wildfires, supporting environmental monitoring and disaster prevention efforts.
               </p>
 
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                  Key Achievements
-                </h4>
-                <ul className="space-y-2">
+              <div className="mt-7">
+                <h4 className="eyebrow mb-3">Key Achievements</h4>
+                <ul className="space-y-2.5">
                   {features.map((feature, idx) => (
-                    <li key={idx} className="flex gap-3 text-sm text-foreground/70">
-                      <span className="text-accent">✓</span>
+                    <li key={idx} className="flex gap-3 text-sm leading-relaxed text-foreground/75">
+                      <Check className="mt-0.5 size-4 shrink-0 text-accent" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                  Tech Stack
-                </h4>
+              <div className="mt-7">
+                <h4 className="eyebrow mb-3">Tech Stack</h4>
                 <div className="flex flex-wrap gap-2">
                   {['Python', 'CNN', 'TensorFlow', 'Deep Learning', 'OpenCV', 'Thermal Imaging'].map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-block px-3 py-1 text-xs bg-secondary/50 text-foreground/80 rounded-full"
-                    >
-                      {tech}
-                    </span>
+                    <Chip key={tech}>{tech}</Chip>
                   ))}
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <Button
-                  asChild
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="#" target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+                  <Github className="size-4" />
+                  View Code
+                </a>
+                <a
+                  href="https://medium.com/@saihajvirsingh09/building-a-cnn-based-wildfire-detection-system-abca8c547edc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={btnGhost}
                 >
-                  <a href="#" target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  asChild
-                  className="border-border hover:border-accent hover:text-accent gap-2"
-                >
-                  <a href="https://medium.com/@saihajvirsingh09/building-a-cnn-based-wildfire-detection-system-abca8c547edc" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                    Learn More
-                  </a>
-                </Button>
+                  <ExternalLink className="size-4" />
+                  Learn More
+                </a>
               </div>
             </div>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Reveal>
     </SectionContainer>
   )
 }

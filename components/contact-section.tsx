@@ -2,11 +2,10 @@
 
 import { useState } from 'react'
 import { SectionContainer } from './section-container'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Mail, Github, Linkedin } from 'lucide-react'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
+import { btnPrimary } from '@/lib/styles'
+import { Mail, Github, Linkedin, ArrowUpRight, Send } from 'lucide-react'
 import { toast } from 'sonner'
 
 export function ContactSection() {
@@ -59,125 +58,126 @@ export function ContactSection() {
     }
   }
 
+  const field =
+    'w-full rounded-xl border border-border bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-foreground/35 outline-none transition-colors focus:border-accent focus:bg-white/[0.06] focus:ring-2 focus:ring-accent/25 disabled:opacity-60'
+
+  const rows = [
+    {
+      href: 'mailto:saihajvirsingh09@gmail.com',
+      icon: Mail,
+      label: 'Email',
+      value: 'saihajvirsingh09@gmail.com',
+      external: false,
+    },
+    {
+      href: 'https://github.com/Saihaj0',
+      icon: Github,
+      label: 'GitHub',
+      value: 'github.com/Saihaj0',
+      external: true,
+    },
+    {
+      href: 'https://www.linkedin.com/in/saihajvir-singh-52490a283/',
+      icon: Linkedin,
+      label: 'LinkedIn',
+      value: 'linkedin.com/in/saihajvir-singh-52490a283',
+      external: true,
+    },
+  ]
+
   return (
     <SectionContainer id="contact">
-      <div className="max-w-3xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="12" title="Get in" accent="Touch" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <div>
-            <p className="text-foreground/70 mb-8">
-              Have a project in mind or want to collaborate? Feel free to reach out! I&apos;m always interested in hearing about new opportunities and ideas.
-            </p>
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+        {/* Contact Info */}
+        <Reveal>
+          <p className="max-w-md text-lg leading-relaxed text-foreground/70">
+            Have a project in mind or want to collaborate? Feel free to reach out! I&apos;m always interested in hearing about new opportunities and ideas.
+          </p>
 
-            <div className="space-y-6">
-              <a
-                href="mailto:saihajvirsingh09@gmail.com"
-                className="flex items-center gap-4 p-4 rounded-lg hover:bg-secondary/50 transition-colors group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/50 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                  <Mail className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-foreground/60">Email</p>
-                  <p className="text-foreground font-medium">saihajvirsingh09@gmail.com</p>
-                </div>
-              </a>
-
-              <a
-                href="https://github.com/Saihaj0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-lg hover:bg-secondary/50 transition-colors group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/50 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                  <Github className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-foreground/60">GitHub</p>
-                  <p className="text-foreground font-medium">github.com/Saihaj0</p>
-                </div>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/saihajvir-singh-52490a283/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-lg hover:bg-secondary/50 transition-colors group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/50 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                  <Linkedin className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-foreground/60">LinkedIn</p>
-                  <p className="text-foreground font-medium">linkedin.com/in/saihajvir-singh-52490a283</p>
-                </div>
-              </a>
-            </div>
+          <div className="mt-10 space-y-3">
+            {rows.map((row) => {
+              const Icon = row.icon
+              return (
+                <a
+                  key={row.label}
+                  href={row.href}
+                  {...(row.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="spot glass group flex items-center gap-4 rounded-2xl p-4"
+                >
+                  <div className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 transition-colors group-hover:bg-accent/20">
+                    <Icon className="size-5 text-accent" />
+                  </div>
+                  <div className="relative z-10 min-w-0 flex-1">
+                    <p className="eyebrow">{row.label}</p>
+                    <p className="break-all font-medium text-foreground">{row.value}</p>
+                  </div>
+                  <ArrowUpRight className="relative z-10 size-4 shrink-0 text-foreground/30 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+                </a>
+              )
+            })}
           </div>
+        </Reveal>
 
-          {/* Contact Form */}
-          <Card className="bg-card border border-border p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Contact Form */}
+        <Reveal delay={120}>
+          <div className="beam glass rounded-3xl p-6 sm:p-8">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="name" className="eyebrow mb-2 block">
                   Name
                 </label>
-                <Input
+                <input
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className="bg-background border-border focus-visible:border-accent focus-visible:ring-accent"
+                  className={field}
                   disabled={isSubmitting}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="email" className="eyebrow mb-2 block">
                   Email
                 </label>
-                <Input
+                <input
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your.email@example.com"
-                  className="bg-background border-border focus-visible:border-accent focus-visible:ring-accent"
+                  className={field}
                   disabled={isSubmitting}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="message" className="eyebrow mb-2 block">
                   Message
                 </label>
-                <Textarea
+                <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Your message..."
                   rows={5}
-                  className="bg-background border-border focus-visible:border-accent focus-visible:ring-accent resize-none"
+                  className={`${field} resize-none`}
                   disabled={isSubmitting}
                 />
               </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
-              >
+              <button type="submit" disabled={isSubmitting} className={`${btnPrimary} w-full py-3.5`}>
                 {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
+                {!isSubmitting && <Send className="size-4" />}
+              </button>
             </form>
-          </Card>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </SectionContainer>
   )

@@ -1,64 +1,57 @@
 import { Github, Linkedin } from 'lucide-react'
-import Link from 'next/link'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-card border-t border-border py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="relative z-10 overflow-hidden border-t border-border px-5 pb-8 pt-16 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <p
+          className="text-outline select-none text-center text-[clamp(3rem,15vw,11rem)] font-semibold uppercase leading-none tracking-tighter"
+          aria-hidden="true"
+        >
+          Saihajvir
+        </p>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-8 md:flex-row">
           {/* Left - Copyright */}
           <div className="text-center md:text-left">
-            <p className="text-foreground/70 text-sm">
-              © {currentYear} Saihajvir Singh. All rights reserved.
-            </p>
-            <p className="text-foreground/50 text-xs mt-2">
-              Built with Next.js, React, and TailwindCSS
-            </p>
+            <p className="text-sm text-foreground/70">© {currentYear} Saihajvir Singh. All rights reserved.</p>
+            <p className="mt-2 text-xs text-foreground/50">Built with Next.js, React, and TailwindCSS</p>
           </div>
 
           {/* Center - Quick Links */}
           <div className="flex gap-8 text-sm">
-            <a
-              href="#home"
-              className="text-foreground/70 hover:text-accent transition-colors"
-            >
+            <a href="#home" className="text-foreground/70 transition-colors hover:text-accent">
               Home
             </a>
-            <a
-              href="#projects"
-              className="text-foreground/70 hover:text-accent transition-colors"
-            >
+            <a href="#projects" className="text-foreground/70 transition-colors hover:text-accent">
               Projects
             </a>
-            <a
-              href="#contact"
-              className="text-foreground/70 hover:text-accent transition-colors"
-            >
+            <a href="#contact" className="text-foreground/70 transition-colors hover:text-accent">
               Contact
             </a>
           </div>
 
           {/* Right - Social Links */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/Saihaj0"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg bg-secondary/50 border border-border flex items-center justify-center hover:bg-accent/20 hover:border-accent transition-all"
+              className="flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-all hover:border-accent hover:text-accent"
               aria-label="GitHub"
             >
-              <Github className="w-4 h-4 text-foreground/70 hover:text-accent" />
+              <Github className="size-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/saihajvir-singh-52490a283"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg bg-secondary/50 border border-border flex items-center justify-center hover:bg-accent/20 hover:border-accent transition-all"
+              className="flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-all hover:border-accent hover:text-accent"
               aria-label="LinkedIn"
             >
-              <Linkedin className="w-4 h-4 text-foreground/70 hover:text-accent" />
+              <Linkedin className="size-4" />
             </a>
           </div>
         </div>

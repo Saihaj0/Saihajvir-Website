@@ -1,5 +1,7 @@
 import { SectionContainer } from './section-container'
-import { Card } from '@/components/ui/card'
+import { SectionHeading } from './section-heading'
+import { Reveal } from '@/components/fx/reveal'
+import { TiltCard } from '@/components/fx/tilt-card'
 import { Award } from 'lucide-react'
 
 const certifications = [
@@ -53,29 +55,25 @@ const certifications = [
 export function CertificationsSection() {
   return (
     <SectionContainer id="certifications">
-      <div className="max-w-6xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Certifications</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="10" accent="Certifications" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certifications.map((cert) => (
-            <Card
-              key={cert.title}
-              className="bg-card border border-border hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 p-6"
-            >
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {certifications.map((cert, i) => (
+          <Reveal key={cert.title} delay={(i % 3) * 80} className="h-full">
+            <TiltCard className="h-full p-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/50 flex items-center justify-center flex-shrink-0">
-                  <Award className="w-5 h-5 text-accent" />
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10">
+                  <Award className="size-5 text-accent" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground truncate">{cert.title}</h3>
-                  <p className="text-sm text-foreground/70 mt-1">{cert.issuer}</p>
-                  <p className="text-xs text-foreground/50 mt-2">{cert.date}</p>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold leading-snug text-foreground">{cert.title}</h3>
+                  <p className="mt-1.5 text-sm text-foreground/65">{cert.issuer}</p>
+                  <p className="eyebrow mt-3">{cert.date}</p>
                 </div>
               </div>
-            </Card>
-          ))}
-        </div>
+            </TiltCard>
+          </Reveal>
+        ))}
       </div>
     </SectionContainer>
   )

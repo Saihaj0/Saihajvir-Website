@@ -1,7 +1,6 @@
-import { Github, ExternalLink } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import Link from 'next/link'
+import { Github, ExternalLink, ArrowUpRight } from 'lucide-react'
+import { TiltCard } from '@/components/fx/tilt-card'
+import { Chip } from '@/components/chip'
 
 interface ProjectCardProps {
   title: string
@@ -9,61 +8,48 @@ interface ProjectCardProps {
   technologies: string[]
   githubUrl?: string
   liveUrl?: string
+  index?: number
 }
 
-export function ProjectCard({
-  title,
-  description,
-  technologies,
-  githubUrl,
-  liveUrl,
-}: ProjectCardProps) {
+const linkCls =
+  'inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-medium text-foreground/80 transition-colors hover:border-accent/60 hover:text-accent'
+
+export function ProjectCard({ title, description, technologies, githubUrl, liveUrl, index }: ProjectCardProps) {
   return (
-    <Card className="bg-card border border-border hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 p-6 flex flex-col h-full">
-      <div>
-        <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
-        <p className="text-sm text-foreground/70 mb-4">{description}</p>
-      </div>
+    <TiltCard className="h-full p-6">
+      <div className="flex h-full flex-col">
+        <div className="mb-4 flex items-start justify-between gap-4">
+          {index !== undefined && (
+            <span className="font-mono text-xs text-accent/70">{String(index + 1).padStart(2, '0')}</span>
+          )}
+          <ArrowUpRight className="ml-auto size-4 text-foreground/30" aria-hidden="true" />
+        </div>
+        <h3 className="mb-3 text-lg font-semibold leading-snug tracking-tight text-foreground">{title}</h3>
+        <p className="mb-5 text-sm leading-relaxed text-foreground/65">{description}</p>
 
-      <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-        {technologies.map((tech) => (
-          <span
-            key={tech}
-            className="inline-block px-3 py-1 text-xs bg-secondary/50 text-foreground/80 rounded-full"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
+        <div className="mb-6 mt-auto flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <Chip key={tech}>{tech}</Chip>
+          ))}
+        </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-4 border-t border-border">
-        {githubUrl && (
-          <Button
-            variant="ghost"
-            size="sm"
-            asChild
-            className="hover:text-accent hover:bg-secondary/50 w-full sm:w-auto"
-          >
-            <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-              <Github className="w-4 h-4 mr-2" />
-              Code
-            </a>
-          </Button>
-        )}
-        {liveUrl && (
-          <Button
-            variant="ghost"
-            size="sm"
-            asChild
-            className="hover:text-accent hover:bg-secondary/50 w-full sm:w-auto"
-          >
-            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Live
-            </a>
-          </Button>
+        {(githubUrl || liveUrl) && (
+          <div className="flex flex-wrap items-center gap-3 border-t border-border pt-4">
+            {githubUrl && (
+              <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                <Github className="size-3.5" />
+                Code
+              </a>
+            )}
+            {liveUrl && (
+              <a href={liveUrl} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                <ExternalLink className="size-3.5" />
+                Live
+              </a>
+            )}
+          </div>
         )}
       </div>
-    </Card>
+    </TiltCard>
   )
 }

@@ -1,13 +1,13 @@
 import { SectionContainer } from './section-container'
 import { TimelineItem } from './timeline-item'
+import { SectionHeading } from './section-heading'
 
 export function EducationSection() {
   return (
     <SectionContainer id="education">
-      <div className="max-w-3xl">
-        <h2 className="text-4xl font-bold text-foreground mb-4">Education</h2>
-        <div className="w-12 h-1 bg-accent mb-8" />
+      <SectionHeading n="09" accent="Education" />
 
+      <div className="max-w-3xl">
         <div className="relative">
           <TimelineItem
             title="Bachelor of Technology in Computer Engineering"

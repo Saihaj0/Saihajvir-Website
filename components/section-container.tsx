@@ -7,18 +7,11 @@ interface SectionContainerProps {
   className?: string
 }
 
-export function SectionContainer({
-  id,
-  children,
-  className,
-}: SectionContainerProps) {
+export function SectionContainer({ id, children, className }: SectionContainerProps) {
   return (
     <section
       id={id}
-      className={cn(
-        'py-20 px-4 sm:px-6 lg:px-8 max-w-6xl w-full mx-auto animate-in fade-in duration-500',
-        className
-      )}
+      className={cn('relative z-10 mx-auto w-full max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28', className)}
     >
       {children}
     </section>
